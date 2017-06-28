@@ -1,0 +1,6 @@
+=simple_fields_for 'role_fields_values[]', RoleFieldValue.new do |rfv|
+  -role.role_fields.each do |role_field|
+    .form-group
+      =rfv.hidden_field :role_field_id, value: role_field.id
+      br
+      =rfv.input :value, label: role_field.name, class: 'form-control', required: true

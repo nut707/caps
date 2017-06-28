@@ -1,0 +1,19 @@
+h2 
+  =ExpenseItem.model_name.human
+  .pull-right
+    =link_to edit_expense_item_path(@expense_item) do
+      =fa_icon 'pencil'
+
+-for attribute in @expense_item.attributes.keys-['id', 'created_at','updated_at']
+  -if @expense_item.attributes[attribute].present?
+    -enums = @expense_item.defined_enums.keys
+    p
+      strong
+        = ExpenseItem.human_attribute_name(attribute)+': '
+      -if enums.include? attribute
+        =@expense_item.send attribute+'_i18n'
+      -else
+       = @expense_item.attributes[attribute].to_s
+
+.btn-group
+  = link_to 'Назад', :back, class: 'btn btn-default'

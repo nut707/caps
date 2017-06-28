@@ -1,0 +1,7 @@
+h3 Добавить зарегистрированного автора к публикации "#{@publication.title}"
+=simple_form_for :profile, url: add_author_publication_path, methode: :post  do |profile|
+  =profile.input :last_name, url: autocomplete_profile_last_name_publications_path, as: :autocomplete, label: 'Поиск по фамилии', :id_element => '#profile_id', placeholder: ' Начните вводить фамилию и выберите из списка предложенных пользователей.'
+  =profile.input :id, as: :hidden
+  .form-actions
+    =profile.button :submit, 'Добавить зарегистрированного автора'
+    = link_to "Отмена", my_publications_path, class: 'btn'

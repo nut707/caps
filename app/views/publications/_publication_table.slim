@@ -1,0 +1,51 @@
+table class="table table-striped"
+  thead
+    tr
+      th id
+      th Название
+      th Авторы
+      th Год издания
+      th Аффилирован с ДВФУ
+      th Цитирование
+      th Управление
+  tbody
+    -publications.each do |p|
+      tr
+        td =p.id
+        td =link_to p.title, publication_path(p)
+        td 
+          =render partial: 'publication_authors', locals:{ publication: p }
+        td
+          =p.year
+        td
+          =p.affiliated_fefu.humanize
+        td
+          p
+            = 'РИНЦ: '+ p.citations_rinc.to_s if p.citations_rinc.present?
+          p
+            = 'Scopus: '+ p.citations_scopus.to_s if p.citations_scopus.present?
+          p
+            = 'WOS: '+ p.citations_wos.to_s if p.citations_wos.present?
+          p
+            = 'Scopus/WOS: '+ p.citations_scopus_wos.to_s if p.citations_scopus_wos.present?
+        td 
+          -if can? :edit, p
+            p
+              =link_to 'Добавить зарегистрированного соавтора', add_author_publication_path(p)
+            p
+              =link_to 'Добавить внешнего (НЕзарегистриванного) соавтора', new_publication_external_author_path(p)
+            p
+              =link_to edit_publication_path(p) do
+                =fa_icon 'pencil'
+                |Редактировать
+            p
+              -if current_user == p.author.user
+                =link_to publication_path(p), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+                  =fa_icon 'trash' 
+                  |Удалить
+          -else
+            p
+              =link_to publication_path(p) do
+                  =fa_icon 'eye'
+                  |Просмотр
+

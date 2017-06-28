@@ -1,0 +1,31 @@
+h1 Показатели результативности
+/ =link_to 'Добавить', new_rate_path, class: 'btn btn-default'
+-if @rates.present?
+  table.table.table-striped
+    thead
+      tr
+        th id
+        th Наименование показателя
+        th Описание показателя
+        th 1 год (план)
+        th 2 год (план)
+        th 3 год (план)
+        th Редактировать
+        / th Удалить
+    tbody
+      -@rates.each do |r|
+        tr
+          td =r.id
+          td =r.name
+          td =r.desc
+          td =r.try(:exp_val_1y)
+          td =r.try(:exp_val_2y)
+          td =r.try(:exp_val_3y)
+          td 
+            =link_to edit_rate_path(r) do
+              =fa_icon 'pencil'
+          / td 
+          /   =link_to rate_path(r), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+          /     =fa_icon 'trash'
+-else
+  .text-center Нет показателей

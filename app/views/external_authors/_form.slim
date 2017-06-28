@@ -1,0 +1,11 @@
+= simple_form_for external_author, url: path,:html=> {class: 'publication-form'} do |e|
+  = e.error_notification
+  .form-inputs
+    h3 Внешний автор
+    .form-group
+      =e.input :last_name, required: true
+      =e.input :first_name, required: true
+      =e.input :middle_name, required: true
+    .form-actions
+      = e.button :submit, 'Добавить внешнего соавтора'
+      = link_to "Отмена", my_publications_path, class: 'btn'

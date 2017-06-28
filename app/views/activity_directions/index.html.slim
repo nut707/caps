@@ -1,0 +1,20 @@
+h1 Направления деятельности
+=link_to 'Добавить', new_activity_direction_path, class: 'btn btn-default'
+table.table.table-striped
+  thead
+    tr
+      th id
+      th Наименование
+      th Редактировать
+      th Удалить
+  tbody
+    -@directions.each do |br|
+      tr
+        td =br.id
+        td =br.name
+        td 
+          =link_to edit_activity_direction_path(br) do
+            =fa_icon 'pencil'
+        td 
+          =link_to activity_direction_path(br), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+            =fa_icon 'trash'

@@ -1,0 +1,2 @@
+json.extract! expense_doc, :id, :planned_expense_id, :reserve_doc_id, :date, :number, :cfo, :contragent, :payment_purpose, :sum, :responsible, :comment, :created_at, :updated_at
+json.url expense_doc_url(expense_doc, format: :json)

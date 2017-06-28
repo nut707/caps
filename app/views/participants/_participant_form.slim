@@ -1,0 +1,17 @@
+=simple_form_for [@project.becomes(Project), @participant] do |f|
+  =f.error_notification
+  -if @participant.profile_id.present?
+    =f.input :profile_id, url: autocomplete_profile_last_name_project_participants_path, as: :autocomplete, label: 'Поиск по фамилии.', input_html: {id: 'autocomplete_profile_fio', value: @participant.profile.fio}, :id_element => '#participant_profile_id', required: true, placeholder: ' Начните вводить фамилию и выберите из списка предложенных пользователей.'
+  -else
+    =f.input :profile_id, url: autocomplete_profile_last_name_project_participants_path, as: :autocomplete, label: 'Поиск по фамилии.', input_html: {id: 'autocomplete_profile_fio'}, :id_element => '#participant_profile_id', required: true, placeholder: ' Начните вводить фамилию и выберите из списка предложенных пользователей.'
+
+  =f.input :profile_id, as: :hidden
+  .form-inline
+    =f.association :role, remote: true
+    =f.input :status
+  #role-fields
+    -if @participant.role.present?
+      =render 'role_fields_form', role: @participant.role
+  .form-actions
+    = f.button :submit, 'Сохранить'
+    = link_to "Отмена", project_path(@project, anchor: 'participants'), class: 'btn'

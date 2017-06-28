@@ -1,0 +1,52 @@
+=simple_form_for @project.becomes(Project) do |f|
+  =f.error_notification
+  .form-group
+    h2
+      = @project.model_name.human
+      small.pull-right =@project.id if @project.id.present?
+    =f.input :type, as: :hidden
+    =f.input :title
+    =f.input :status, disabled: !current_user.is_admin?
+    .form-inline
+      =f.input :from, input_html: {min: 2015}
+      =f.input :to, input_html: {min: 2015}
+    =f.association :science_branches
+    =f.association :activity_directions
+    =f.input :objective
+    =f.input :description
+    =f.input :results
+    =f.input :attracting_additional_funding
+    =f.input :experience
+    =f.input :resources
+    -unless @project.type == 'EduProject'
+      h3 Общая информация по исследованию
+      =f.simple_fields_for :researches, @research do |r|
+        =r.input :theme
+        =r.error :theme, id: 'user_name_error'
+        =r.association :science_branches
+        =r.association :activity_directions
+        =r.input :key_words
+        =r.input :statement_of_research_problem
+        =r.input :aims_and_objectives
+        =r.input :desc_research
+        =r.input :desc_methods
+        =r.input :expected_results
+    -if @project.type == 'ResearchProject'
+      h3 Учебный курс
+      =f.simple_fields_for :courses, @course do |c|
+        =c.input :title
+        =c.input :lvl
+        =c.association :languages
+        =c.input :profile_podgotovki
+        =c.input :duration
+        =c.input :desc
+  .form-actions
+    = f.button :submit, 'Сохранить'
+    = link_to "Отмена", :back, class: 'btn'
+    .pull-right
+      -if @project.draft?
+        = f.button :submit, 'На согласование', name: 'confirming'
+      -elsif @project.confirming? && current_user.is_admin?
+        = f.button :submit, 'Cогласован', name: 'confirmed'
+      -elsif @project.confirmed? && current_user.is_admin?
+        = f.button :submit, 'В архив', name: 'archive'

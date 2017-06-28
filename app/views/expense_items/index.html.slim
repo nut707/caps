@@ -1,0 +1,30 @@
+h1 Статьи расходов
+
+=link_to 'Добавить', new_expense_item_path, class: 'btn btn-default'
+
+table.table.table-striped
+  thead
+    tr
+      th = ExpenseItem.human_attribute_name('code')
+      th = ExpenseItem.human_attribute_name('name')
+      th Управление
+
+  tbody
+    - @expense_items.each do |expense_item|
+      tr
+        td = expense_item.code
+        td = expense_item.name
+        td
+          ul.list
+            li
+              = link_to expense_item do
+                =fa_icon 'eye'
+                |Просмотр
+            li
+              = link_to edit_expense_item_path(expense_item) do
+                =fa_icon 'pencil'
+                |Редактировать
+            li
+              = link_to  expense_item, data: { confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?" }, method: :delete do
+                =fa_icon 'trash'
+                |Удалить

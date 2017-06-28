@@ -1,0 +1,17 @@
+= simple_form_for [@project.becomes(Project), @research] do |f|
+  = f.error_notification
+
+  .form-inputs
+    =f.input :theme
+    =f.association :science_branches
+    =f.association :activity_directions
+    =f.input :key_words
+    =f.input :statement_of_research_problem
+    =f.input :aims_and_objectives
+    =f.input :desc_research
+    =f.input :desc_methods
+    =f.input :expected_results
+
+  .form-actions
+    = f.button :submit, 'Сохранить'
+    = link_to "Отмена", project_path(@project, anchor: 'researches'), class: 'btn'

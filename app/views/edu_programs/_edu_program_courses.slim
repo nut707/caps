@@ -1,0 +1,8 @@
+-if edu_program.courses.present?
+  -edu_program.courses.each do |c|
+    p 
+      =link_to c.title, project_course_path(@project, c)
+      =link_to project_course_path(@project, c), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+        =fa_icon 'times'
+-else
+  p Нет курсов

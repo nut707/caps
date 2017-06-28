@@ -1,0 +1,21 @@
+h3 Все публикации участников
+table.table.table-striped
+    thead
+      th Название
+      th Год издания
+      th Авторы
+      th Добавить в проект
+    tbody
+      -profiles_publications.each do |publ|
+          tr 
+            td =link_to publ.title, publication_path(publ)
+            td =publ.year
+            td =render partial: 'publications/publication_authors', locals: { publication: publ }
+            td 
+              -unless publ.projects.present?
+                =link_to 'Добавить в проект', add_publication_project_path(@project, publication_id: publ), method: :put, remote: :true
+              -else
+                p 
+                  |Уже добавлена в проект 
+                  -publ.projects.each do |pr|
+                    =link_to pr.title, project_path(pr)

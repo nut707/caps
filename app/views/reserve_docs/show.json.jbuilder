@@ -1,0 +1,1 @@
+json.partial! "reserve_docs/reserve_doc", reserve_doc: @reserve_doc

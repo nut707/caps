@@ -1,0 +1,48 @@
+=link_to 'Добавить расходный документ', new_project_expense_doc_path(@project), class: 'btn btn-default'
+
+table.table.table-striped
+  thead
+    tr
+      th Период
+      th Статья расхода
+      th Плановая сумма
+      th = ExpenseDoc.human_attribute_name('reserve_doc_id')
+      th = ExpenseDoc.human_attribute_name('date')
+      th = ExpenseDoc.human_attribute_name('number')
+      th = ExpenseDoc.human_attribute_name('cfo')
+      th = ExpenseDoc.human_attribute_name('contragent')
+      th = ExpenseDoc.human_attribute_name('payment_purpose')
+      th = ExpenseDoc.human_attribute_name('sum')
+      th = ExpenseDoc.human_attribute_name('responsible')
+      th = ExpenseDoc.human_attribute_name('comment')
+      th Управление
+
+  tbody
+    - expense_docs.each do |expense_doc|
+      tr
+        td = link_to expense_doc.planned_expense.expense_period.period, expense_doc.planned_expense.expense_period
+        td = link_to expense_doc.planned_expense.expense_item.human_name, expense_doc.planned_expense.expense_item
+        td = link_to expense_doc.planned_expense.value, [@project.becomes(Project), expense_doc.planned_expense]
+        td = link_to expense_doc.reserve_doc.human_name, [@project.becomes(Project), expense_doc.reserve_doc] if expense_doc.reserve_doc.present?
+        td = expense_doc.date
+        td = expense_doc.number
+        td = expense_doc.cfo
+        td = expense_doc.contragent
+        td = expense_doc.payment_purpose
+        td = expense_doc.sum
+        td = expense_doc.responsible
+        td = expense_doc.comment
+        td
+          ul.list
+            li
+              = link_to project_expense_doc_path(@project, expense_doc) do
+                =fa_icon 'eye'
+                |Просмотр
+            li
+              = link_to edit_project_expense_doc_path(@project, expense_doc) do
+                =fa_icon 'pencil'
+                |Редактировать
+            li
+              = link_to  project_expense_doc_path(@project, expense_doc), data: { confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?" }, method: :delete do
+                =fa_icon 'trash'
+                |Удалить

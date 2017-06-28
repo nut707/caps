@@ -1,0 +1,14 @@
+h3 Редактировать участника проекта "#{@project.title}"
+=simple_form_for [@project.becomes(Project), @participant] do |f|
+  =f.error_notification
+  h4 =@participant.profile.fio
+  .form-inline
+    =f.association :role, remote: true
+    =f.input :status
+  #role-fields
+    =f.simple_fields_for :role_field_values  do |rfv|
+      .form-group
+        =rfv.input :value, class: 'form-control', label: rfv.object.role_field.name
+  .form-actions
+    = f.button :submit, 'Сохранить'
+    = link_to "Отмена", project_path(@project, anchor: 'participants'), class: 'btn'

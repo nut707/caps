@@ -1,0 +1,44 @@
+div style='margin: 10px 0'
+  =link_to 'Добавить участника', new_project_participant_path(@project), class: 'btn btn-default'
+-unless @participants.present?
+  p.text-center style='margin:40px' Нет участников
+-else
+  table.table.table-striped
+    thead
+      th ФИО
+      th Роль и статус в проекте
+      th Текущее место работы, должность 
+      th Ученая степень
+      th Индекс Хирша 
+      th Рынок труда
+      th Время пребывания в ДВФУ
+    tbody
+      -@profiles.includes(:stays).uniq.each do |prof|
+        tr
+          td =link_to prof.fio, profile_path(prof)
+          td 
+            -prof.participants.where(project: @project).each do |part|
+              p
+                = link_to part.role.name, edit_project_participant_path(@project, part)
+                span style= 'margin-left: 5px'
+                  = part.status_i18n 
+                = link_to project_participant_path(@project, part), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+                  = fa_icon 'times'
+          td =prof.place_of_work
+          td =prof.science_degree_i18n
+          td 
+            -if prof.index_hirsch_rinc.present?
+              p 
+                |РИНЦ: 
+                =prof.index_hirsch_rinc
+            -if prof.index_hirsch_scopus.present?
+              p 
+                |Scopus: 
+                =prof.index_hirsch_scopus
+            -if prof.index_hirsch_wos.present?
+              p 
+                |WOS: 
+                = prof.index_hirsch_wos
+          td =(prof.labour_market_i18n).html_safe
+          td 
+            =render 'shared/profile_stays', prof: prof

@@ -1,0 +1,23 @@
+h2 
+  |Курсы
+  .pull-right
+    =link_to edit_project_course_path(@project, @course) do
+      =fa_icon 'pencil'
+-for attribute in @course.attributes.keys-['id','project_id', 'edu_program_id','created_at','updated_at']
+  -if @course.attributes[attribute].present?
+    -enums = @course.defined_enums.keys
+    h4
+      = Course.human_attribute_name(attribute)+':'
+    p
+      -if enums.include? attribute
+        =@course.send attribute+'_i18n'
+      -else
+       = @course.attributes[attribute].to_s
+
+h3 Преподавателя курса:
+=link_to 'Добавить преподавателя на курс', new_project_course_teacher_path(@project, @course), class: 'btn btn-default'
+-@course.teachers.each do |t|
+  p 
+    =link_to t.fio, project_course_teacher_path(@project, @course, t)
+    =link_to project_course_teacher_path(@project, @course, t), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+      = fa_icon 'times'

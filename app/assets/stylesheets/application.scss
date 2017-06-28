@@ -1,0 +1,37 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import 'flash';
+@import 'forms';
+@import 'jquery.ui.all';
+@import 'dataTables/bootstrap/3/jquery.dataTables.bootstrap';
+
+.fa{
+  padding: 0 5px;
+}
+abbr[title]{
+  color: red;
+  border:none;
+}
+body{
+  padding-bottom: 60px;
+}
+.container{
+  width: 90%;
+}
+.devise_container{
+  min-width: 320px;
+  width: 33%;
+  margin: auto;
+}
+ul.list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li{
+    white-space: nowrap;
+  }
+}
+.nav-tabs{
+  margin-bottom: 10px;
+}

@@ -1,0 +1,6 @@
+console.log('123')
+select = $("#expense_doc_reserve_doc_id")
+select.removeAttr('disabled')
+select.empty()
+select.prepend('<option></option>')
+select.append("<%= j render 'reserve_docs_list', planned_expense: @planned_expense %>")

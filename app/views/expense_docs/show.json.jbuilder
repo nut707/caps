@@ -1,0 +1,1 @@
+json.partial! "expense_docs/expense_doc", expense_doc: @expense_doc

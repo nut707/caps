@@ -1,0 +1,8 @@
+= simple_form_for @nationality do |f|
+  =f.error_notification
+  .form-inputs
+    h3 Гражданство
+    .form-group
+      =f.input :name
+    .form-actions
+      = f.button :submit, 'Сохранить'

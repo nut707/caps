@@ -1,0 +1,31 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Общие сведения") do |sheet|
+  sheet.add_row ['Название', 'Тип', 'Руководитель']
+  @projects.each do |project|
+    rucovod_role = Role.find_by(name: 'Руководитель проекта')
+    rucovods = project.participants.where(role_id: rucovod_role.id).map{|p| p.profile.fio}.to_sentence
+
+    sheet.add_row [project.title, project.model_name.human,rucovods]
+    sheet.auto_filter = "A1:C1"
+  end
+end
+
+wb.add_worksheet(name: "Публикации") do |sheet|
+  sheet.add_row ['Название', 'Год издания', 'Авторы']
+  @publications = @projects.map{|p| p.publications}.flatten.uniq
+
+  @publications.each do |publ|
+    authors = publ.authors.map(&:fio).to_sentence
+
+    sheet.add_row [publ.title, publ.year, authors]
+    sheet.auto_filter = "A1:C1"
+  end
+end
+
+wb.add_worksheet(name: "Показатели результативности") do |sheet|
+  sheet.add_row ['Название', 'Значение']
+  Rate.all.limit(6).each do |r|
+    sheet.add_row [r.name, @projects.to_a.sum{|x| x.send('rate'+r.id.to_s)}]
+    sheet.auto_filter = "A1:B1"
+  end
+end

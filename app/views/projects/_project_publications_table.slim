@@ -1,0 +1,13 @@
+table.table.table-striped
+  thead
+    th Название
+    th Год издания
+    th Авторы
+    th Исключить из проекта
+  tbody
+    -@publications.each do |publ|
+      tr 
+        td =link_to publ.title, publication_path(publ)
+        td =publ.year
+        td =render partial: 'publications/publication_authors', locals: { publication: publ }
+        td =link_to 'Исключить из проекта', remove_publication_project_path(@project, publication_id: publ), method: :delete, remote: :true, data: {confirm: "Вы уверены, что хотите исключить публикацию из проекта?"}

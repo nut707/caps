@@ -1,0 +1,57 @@
+header.nav.navbar-default
+  .container
+    .navbar-header
+      =link_to 'Главная', root_path, class: 'navbar-brand'
+      button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
+        span class="sr-only" Toggle navigation
+        span class="icon-bar"
+        span class="icon-bar"
+        span class="icon-bar"
+
+    div id="navbar" class="navbar-collapse collapse" aria-expanded="false"
+      ul.nav.navbar-nav
+        -if current_user.profile.present?
+          li
+            =link_to 'Мой профиль', profile_path(current_user.profile.id) 
+          li
+            =link_to 'Мои публикации', my_publications_path
+          li
+            =link_to 'Мои проекты', my_projects_path
+      ul.nav.navbar-nav.navbar-right
+        -if current_user.is_admin?
+          li.dropdown
+              a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+                |Справочники 
+                span.caret
+              ul.dropdown-menu
+                -if current_user.superadmin?
+                  li
+                    =link_to 'Пользователи', users_path
+                li
+                  =link_to 'Профили',profiles_path
+                li
+                  =link_to 'Публикации', publications_path
+                li
+                  =link_to 'Проекты', projects_path
+                li
+                  =link_to 'Научные отрасли', science_branches_path
+                li
+                  =link_to 'Направления деятельности', activity_directions_path
+                li
+                  =link_to 'Языки', languages_path
+                li
+                  =link_to 'Гражданство', nationalities_path
+                li
+                  =link_to 'Показатели результативности', rates_path
+                li
+                  =link_to 'Статьи расходов', expense_items_path
+                / li
+                /   =link_to 'Внешние соавторы', external_autors_path
+        li
+          =link_to edit_user_registration_path do
+            =fa_icon 'user'
+            =current_user.login
+        li
+          =link_to destroy_user_session_path, :method => :delete do
+            =fa_icon 'sign-out'
+            |Выйти

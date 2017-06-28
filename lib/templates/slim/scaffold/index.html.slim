@@ -1,0 +1,32 @@
+h1 <%= plural_table_name %>
+
+=link_to 'Добавить', new_<%= singular_table_name %>_path, class: 'btn btn-default'
+
+table.table.table-striped
+  thead
+    tr
+<% attributes.each do |attribute| -%>
+      th = <%= singular_table_name.camelize %>.human_attribute_name('<%= attribute.name.to_s %>')
+<% end -%>
+      th Управление
+
+  tbody
+    - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+      tr
+<% attributes.each do |attribute| -%>
+        td = <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+        td
+          ul.list
+            li
+              = link_to <%= singular_table_name %> do
+                =fa_icon 'eye'
+                |Просмотр
+            li
+              = link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>) do
+                =fa_icon 'pencil'
+                |Редактировать
+            li
+              = link_to  <%= singular_table_name %>, data: { confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?" }, method: :delete do
+                =fa_icon 'trash'
+                |Удалить

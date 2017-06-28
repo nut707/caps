@@ -1,0 +1,7 @@
+h1 
+  |Редактирование расходный документ
+  .pull-right
+    =link_to project_expense_doc_path(@project, @expense_doc) do
+      =fa_icon 'eye'
+== render 'form'
+

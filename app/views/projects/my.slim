@@ -1,0 +1,16 @@
+.btn-group
+  button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+    |Создать проект 
+    span.caret
+  ul.dropdown-menu
+    li
+      =link_to 'Комплексный', new_project_path(type: 'complex_project')
+    li
+      =link_to 'Исследовательский', new_project_path(type: 'research_project')
+    li
+      =link_to 'Образовательный', new_project_path(type: 'edu_project')
+
+-unless current_user.profile.projects.present?
+  .text-center У вас нет проектов
+-else
+  =render 'projects_table', projects: @projects

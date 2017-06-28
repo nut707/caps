@@ -1,0 +1,19 @@
+h2 
+  =ExpensePeriod.model_name.human
+  .pull-right
+    =link_to edit_expense_period_path(@expense_period) do
+      =fa_icon 'pencil'
+
+-for attribute in @expense_period.attributes.keys-['id', 'created_at','updated_at', 'project_id']
+  -if @expense_period.attributes[attribute].present?
+    -enums = @expense_period.defined_enums.keys
+    p
+      strong
+        = ExpensePeriod.human_attribute_name(attribute)+': '
+      -if enums.include? attribute
+        =@expense_period.send attribute+'_i18n'
+      -else
+       = @expense_period.attributes[attribute].to_s
+
+.btn-group
+  = link_to 'Назад', project_path(@project, anchor: 'finances'), class: 'btn btn-default'

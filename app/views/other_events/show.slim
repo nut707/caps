@@ -1,0 +1,5 @@
+-for attribute in @other_event.attributes.keys-['id','project_id','created_at','updated_at']
+  -if @other_event.attributes[attribute].present?
+    h4
+      = OtherEvent.human_attribute_name(attribute)+':'
+    p = @other_event.attributes[attribute].to_s

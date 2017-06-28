@@ -1,0 +1,20 @@
+div style='margin: 10px 0;'
+  =link_to 'Добавить курс', new_project_course_path(@project), class: 'btn btn-default'
+-unless @courses.present?
+  p.text-center style='margin:40px' Нет иных мероприятий
+-else
+  table.table.table-striped
+    thead
+      th Название
+      -if can? :edit, @project.courses.first
+        th Управление
+    tbody
+      -@courses.each do |course|
+        tr
+          td =link_to course.title, project_course_path(@project, course)
+          -if can? :edit, course
+            td
+              =link_to edit_project_course_path(@project, course) do 
+                =fa_icon 'pencil'
+              =link_to project_course_path(@project, course), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+                =fa_icon 'trash'

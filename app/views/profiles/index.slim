@@ -1,0 +1,25 @@
+table class="table table-striped"
+  thead
+    tr
+      th id
+      th Логин
+      th Профиль
+      th Время пребывания в ДВФУ
+      th Управление
+  tbody
+    -@profiles.each do |p|
+      tr
+        td =p.id
+        td 
+          p =p.user.login
+          p =p.user.email if p.user.username.present?
+        td
+          =link_to profile_path(p) do
+            =p.fio
+        td
+          =render 'shared/profile_stays', prof: p
+        td 
+          =link_to edit_profile_path(p) do
+            =fa_icon 'pencil'
+          =link_to profile_path(p), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+            =fa_icon 'trash' 

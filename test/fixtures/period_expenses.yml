@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2017-03-10
+  finish: 2017-03-10
+  name: MyString
+  project_id: 
+
+two:
+  start: 2017-03-10
+  finish: 2017-03-10
+  name: MyString
+  project_id: 

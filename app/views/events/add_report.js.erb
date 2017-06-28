@@ -1,0 +1,2 @@
+$('.event-'+<%= @event.id %>+' .report').html('<%=j @event.report.to_s %>')
+$('.event-'+<%= @event.id %>+' .report-date').html('<%=j Russian::strftime(@event.report_date,('%d %B %Y')) %>')

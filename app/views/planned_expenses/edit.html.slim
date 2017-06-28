@@ -1,0 +1,7 @@
+h1 
+  |Редактирование планового расхода
+  .pull-right
+    =link_to project_planned_expense_path(@project, @planned_expense) do
+      =fa_icon 'eye'
+== render 'form'
+

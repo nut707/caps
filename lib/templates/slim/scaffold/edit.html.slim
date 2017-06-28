@@ -1,0 +1,7 @@
+h1 
+  |Редактирование <%= singular_table_name %>
+  .pull-right
+    =link_to <%= singular_table_name %>_path(@<%= singular_table_name %>) do
+      =fa_icon 'eye'
+== render 'form'
+

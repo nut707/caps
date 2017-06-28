@@ -1,0 +1,6 @@
+=simple_form_for object do |f|
+  = f.error_notification
+  .form-inputs
+    =f.input :name
+  .form-actions
+    =f.submit 'Сохранить', class: 'btn btn-default'

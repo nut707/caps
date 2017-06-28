@@ -1,0 +1,16 @@
+table class="table table-striped"
+  thead
+    tr
+      th id
+      th Username
+      th Email
+      th role
+      th Управление
+  tbody
+    -@users.each do |u|
+      tr
+        td =u.id
+        td =u.try(:username)
+        td =u.email
+        td =u.role_i18n
+        td Сделать смену роли

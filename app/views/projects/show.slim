@@ -1,0 +1,74 @@
+h1 
+  |Проект 
+  =@project.title+' '
+  small =@project.status_i18n
+  -if can? :edit, @project
+    .pull-right
+      =link_to edit_project_path(@project) do 
+        =fa_icon 'pencil'
+ul.nav.nav-tabs
+  li.active 
+    a data-toggle="tab" href="#common" Общие сведения
+  li
+    a data-toggle="tab" href="#participants" Участники проекта
+  li
+    a data-toggle="tab" href="#publications" Публикации проекта
+  li
+    a data-toggle="tab" href="#events" Календарный план
+
+  -unless @project.type == 'EduProject'
+    li
+      a data-toggle="tab" href="#researches" Исследования
+
+  -if @project.type == 'ResearchProject'
+    li
+      a data-toggle="tab" href="#courses" Учебный курс
+
+  -if @project.type == 'ComplexProject'
+    li
+      a data-toggle="tab" href="#other_events" Иные мероприятия
+
+  -if @project.type == 'ComplexProject' || 'EduProject'
+    li
+      a data-toggle="tab" href="#edu_programs" Обр-ые программы
+
+  li
+    a data-toggle="tab" href="#finances" Финансы
+
+.tab-content
+  #common.tab-pane.fade.in.active
+    =render 'project_common'
+    
+  #participants.tab-pane.fade.in
+     =render 'project_participants'
+
+  #publications.tab-pane.fade.in
+    #project-publications
+      -if @publications.present?
+        =render 'project_publications_table', publications: @publications
+      -else
+        p.text-center style='margin:40px' Нет включенных в проект публикаций
+    #project-profiles-publications
+      =render 'project_profiles_publications', profiles_publications: @profiles_publications
+     
+  #events.tab-pane.fade.in
+    =render 'project_events'
+
+  -unless @project.type == 'EduProject'
+    #researches.tab-pane.fade.in
+      =render 'project_researches'
+
+  -if @project.type == 'ComplexProject'
+    #other_events.tab-pane.fade.in
+      =render 'project_other_events'
+
+  -if @project.type == 'ResearchProject'
+    #courses.tab-pane.fade.in
+      =render 'project_courses'
+
+  -if @project.type == 'ComplexProject' || 'EduProject'
+    #edu_programs.tab-pane.fade.in
+      =render 'project_edu_programs'
+
+  #finances.tab-pane.fade.in
+    =render 'project_finances'

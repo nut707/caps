@@ -1,0 +1,10 @@
+h2
+  = t(".forgot_your_password")
+.well Для восстановления пароля учетной записи ДВФУ перейдите по <a href=https://idm.dvfu.ru/component/userpanel/recovery target="_blank">ссылке</a>
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :email, required: true, autofocus: true, error: raw("для восстановления пароля учетной записи ДВФУ перейдите по <a href=https://idm.dvfu.ru/component/userpanel/recovery target='_blank'>ссылке</a>")
+  .form-actions
+    = f.button :submit, t(".send_me_reset_password_instructions")
+= render "devise/shared/links"

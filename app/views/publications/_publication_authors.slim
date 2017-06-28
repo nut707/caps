@@ -1,0 +1,17 @@
+-if publication.author_id?
+  p =link_to publication.author.fio,  profile_path(publication.author) 
+-if publication.coauthors.present?
+  b Соавторы
+  -publication.coauthors.each do |coauthor|
+    -if coauthor.class == Profile
+      p id="profile-#{coauthor.id}"
+        =link_to coauthor.fio, profile_path(coauthor)
+        -if can? :author_remove, publication
+          =link_to author_remove_publication_path(publication, coauthor), method: :delete, remote: true, data: {confirm: "Вы уверены, что хотите удалить автора?"} do
+            =fa_icon 'times'
+    -else
+      p id="external-#{coauthor.id}"
+        =coauthor.fio
+        -if can? :delete, coauthor
+          =link_to publication_external_author_path(publication, coauthor), method: :delete, remote: true, data: {confirm: "Вы уверены, что хотите удалить внешнего автора?"} do
+            =fa_icon 'times' 

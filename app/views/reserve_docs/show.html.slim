@@ -1,0 +1,22 @@
+h2 
+  |Резервный документ
+  .pull-right
+    =link_to edit_project_reserve_doc_path(@project, @reserve_doc) do
+      =fa_icon 'pencil'
+
+-for attribute in @reserve_doc.attributes.keys-['id', 'created_at','updated_at']
+  -if @reserve_doc.attributes[attribute].present?
+    -enums = @reserve_doc.defined_enums.keys
+    p
+      strong
+        = ReserveDoc.human_attribute_name(attribute)+': '
+      -if enums.include? attribute
+        =@reserve_doc.send attribute+'_i18n'
+      -elsif attribute == 'planned_expense_id'
+        -pl = PlannedExpense.find(@reserve_doc.attributes[attribute])
+        =link_to pl.name, [@project.becomes(Project), pl]
+      -else
+       = @reserve_doc.attributes[attribute].to_s
+
+.btn-group
+  = link_to 'Назад', :back, class: 'btn btn-default'

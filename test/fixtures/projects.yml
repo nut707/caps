@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  status: 
+  title: MyString
+  goal: MyText
+  description: MyText
+  result: MyText
+
+two:
+  type: 
+  status: 
+  title: MyString
+  goal: MyText
+  description: MyText
+  result: MyText

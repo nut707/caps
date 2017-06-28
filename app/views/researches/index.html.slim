@@ -1,0 +1,19 @@
+h1 Listing researches
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @researches.each do |research|
+      tr
+        td = link_to 'Show', research
+        td = link_to 'Edit', edit_research_path(research)
+        td = link_to 'Destroy', research, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Research', new_research_path

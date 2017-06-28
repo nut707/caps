@@ -1,0 +1,35 @@
+-for attribute in @project.attributes.keys-['id','created_at','updated_at']
+  -if @project.attributes[attribute].present?
+    -enums = @project.defined_enums.keys
+    h3
+      = Project.human_attribute_name(attribute)+':'
+    p 
+      -if attribute == 'type'
+        =@project.model_name.human
+      -elsif enums.include? attribute
+        =@project.send attribute+'_i18n'
+      -else
+        = @project.attributes[attribute].to_s
+h3 Направления деятельности: 
+-if @project.activity_directions.exists
+  p 
+    -@project.activity_directions.each do |dir|
+      =dir.name+' '
+-else
+  p не выбраны
+h3 Научная(ые) отрасль(и): 
+-if @project.science_branches.exists
+  p 
+    -@project.science_branches.each do |branch|
+      =branch.name+' '
+-else
+  p не выбраны
+
+h3 Показатели результативности:
+ol style='padding-left: 20px;'
+  -Rate.all.each do |r|
+    li
+      =r.name
+      |: 
+      strong 
+        =@project.send('rate'+r.id.to_s)

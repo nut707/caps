@@ -1,0 +1,9 @@
+=simple_form_for [@project.becomes(Project), @edu_program, @course, @teacher] do |f|
+  =f.error_notification
+  .form-inputs
+    =f.input :fio
+    =f.input :birthday_year
+    =f.association :nationality
+  .form-actions
+    = f.button :submit, 'Сохранить'
+    = link_to "Отмена", project_path(@project, anchor: 'edu_programs'), class: 'btn'

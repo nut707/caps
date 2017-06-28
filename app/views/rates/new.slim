@@ -1,0 +1,11 @@
+=simple_form_for @rate do |f|
+  = f.error_notification
+  .form-inputs
+    =f.input :name
+    =f.input :desc
+    .form-inline.form-group
+      =f.input :exp_val_1y
+      =f.input :exp_val_2y
+      =f.input :exp_val_3y
+  .form-actions
+    =f.submit 'Сохранить', class: 'btn btn-default'

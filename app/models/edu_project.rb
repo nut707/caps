@@ -1,0 +1,2 @@
+class EduProject < Project
+end

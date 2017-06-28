@@ -1,0 +1,2 @@
+class ResearchProject < Project
+end

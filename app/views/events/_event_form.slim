@@ -1,0 +1,14 @@
+=simple_form_for [project.becomes(Project),event] do |f|
+  =f.error_notification
+  .form-inputs
+    =f.input :title
+    =f.input :description
+    =f.input :start_date
+    =f.input :end_date
+    =f.association :participant, collection: project.participants, label_method: lambda {|participant| "#{participant.profile.fio}"}
+    -if can? [:edit], @project.events
+      =f.input :status
+      =f.input :report
+  .form-actions
+    = f.button :submit, 'Сохранить'
+    = link_to "Отмена", project_path(@project, anchor: 'events'), class: 'btn'

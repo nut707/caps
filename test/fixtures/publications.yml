@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  year: 1
+  issn: 
+  isbn: 
+  url: MyString
+  citations_rinc: 1
+  citations_scopus: 1
+  citations_wos: 1
+  citations_scopus_wos: 1
+
+two:
+  title: MyString
+  year: 1
+  issn: 
+  isbn: 
+  url: MyString
+  citations_rinc: 1
+  citations_scopus: 1
+  citations_wos: 1
+  citations_scopus_wos: 1

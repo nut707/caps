@@ -1,0 +1,17 @@
+h2 
+  |Учитель
+  .pull-right
+    =link_to edit_project_course_teacher_path(@project, @course, @teacher) do
+      =fa_icon 'pencil'
+-for attribute in @teacher.attributes.keys-['id', 'course_id','created_at','updated_at']
+  -if @teacher.attributes[attribute].present?
+    -enums = @teacher.defined_enums.keys
+    h4
+      = Teacher.human_attribute_name(attribute)+':'
+    p
+      -if enums.include? attribute
+        =@teacher.send attribute+'_i18n'
+      -elsif attribute == 'nationality_id'
+        =Nationality.find(@teacher.attributes[attribute]).name
+      -else
+       = @teacher.attributes[attribute].to_s

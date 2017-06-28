@@ -1,0 +1,17 @@
+.row
+  .col-sm-6
+    h2 Мои проекты
+    -if @projects.present?
+      ul
+        -@projects.each do |p|
+          li =link_to p.title, project_path(p)
+    -else
+      p У вас пока нет проектов
+  .col-sm-6
+    h2 Мои мероприятия
+    -if @events.present?
+      ul
+        -@events.each do |e|
+          li =link_to e.title, project_path(e.project, anchor: 'events')
+    -else
+      p У вас пока нет мероприятий

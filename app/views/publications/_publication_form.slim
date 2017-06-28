@@ -1,0 +1,39 @@
+= simple_form_for @publication, :html=> {class: 'publication-form'} do |p|
+  = p.error_notification
+  .form-inputs
+    .well В данном разделе добавляются публикации, опубликованные не ранее 2012 года, признак индексируемости, которых соответствует значению «Научные статьи, опубликованные в изданиях, индексируемых в Scopus, Web of Science, РИНС».
+    h3 Общие сведения
+    .form-group
+      =p.input :title
+      .form-inline.form-group 
+        =p.input :year, input_html: {min: 2012}
+      =p.input :url
+      =p.input :title_izdanie
+      =p.input :url_izdanie
+      =p.input :affiliated_fefu
+      h3 Автор и соавторы:
+      -unless @publication.author_id?
+        .well Добавляются после создания публикации
+      =render partial: 'publication_authors', locals: {publication: @publication}
+      h3 Наукометрические показатели
+      .form-inline.form-group        
+        =p.input :issn, input_html: {min: 0}
+        =p.input :isbn, input_html: {min: 0}
+      .form-inline.form-group
+        =p.input :indexed_rinc
+        =p.input :citations_rinc, disabled: !@publication.indexed_rinc, input_html: {min: 0, id: 'citations_rinc'}, label: 'количество цитирований'
+      .form-inline.form-group
+        =p.input :indexed_scopus
+        =p.input :citations_scopus, disabled: !@publication.indexed_scopus, input_html: {min: 0, id: 'citations_scopus'}, label: 'количество цитирований'
+        =p.input :quartile_scopus, disabled: !@publication.indexed_scopus
+
+      .form-inline.form-group
+        =p.input :indexed_wos
+        =p.input :citations_wos,disabled: !@publication.indexed_wos, input_html: {min: 0, id: 'citations_wos'},label: 'количество цитирований'
+        =p.input :quartile_wos, disabled: !@publication.indexed_wos
+
+      .form-inline.form-group
+        =p.input :citations_scopus_wos,disabled: !(@publication.indexed_scopus && @publication.indexed_wos), input_html: {min: 0, id: 'citations_scopus_wos'}
+  .form-actions
+    = p.button :submit, 'Сохранить'
+    = link_to "Отмена", my_publications_path, class: 'btn'

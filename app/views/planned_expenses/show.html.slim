@@ -1,0 +1,25 @@
+h2 
+  =PlannedExpense.model_name.human
+  .pull-right
+    =link_to edit_project_planned_expense_path(@project, @planned_expense) do
+      =fa_icon 'pencil'
+
+-for attribute in @planned_expense.attributes.keys-['id', 'created_at','updated_at']
+  -if @planned_expense.attributes[attribute].present?
+    -enums = @planned_expense.defined_enums.keys
+    p
+      strong
+        = PlannedExpense.human_attribute_name(attribute)+': '
+      -if enums.include? attribute
+        =@planned_expense.send attribute+'_i18n'
+      -elsif attribute == 'expense_period_id'
+        -ep = ExpensePeriod.find(@planned_expense.attributes[attribute])
+        =link_to ep.name, ep
+      -elsif attribute == 'expense_item_id'
+        -ei = ExpenseItem.find(@planned_expense.attributes[attribute])
+        =link_to ei.name, ei
+      -else
+       = @planned_expense.attributes[attribute].to_s
+
+.btn-group
+  = link_to 'Назад', project_path(@project, anchor: 'finances'), class: 'btn btn-default'

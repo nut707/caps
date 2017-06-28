@@ -1,0 +1,57 @@
+h1 
+  |Мой профиль
+  -if can? :edit, @profile
+    .pull-right
+      =link_to edit_profile_path do 
+        =fa_icon 'pencil'
+-for attribute in @profile.attributes.keys-['id','user_id','created_at','updated_at']
+  -if @profile.attributes[attribute].present?
+    -enums = @profile.defined_enums.keys
+    h4
+      = Profile.human_attribute_name(attribute)+':'
+    p 
+      -if attribute=='birthday'
+        =Russian::strftime(@profile.attributes[attribute],('%d %B %Y'))
+      -elsif enums.include? attribute
+        =@profile.send attribute+'_i18n'
+      -else
+        = @profile.attributes[attribute].to_s
+h4 Гражданство:
+-@profile.nationalities.each do |nat|
+  p =nat.name
+
+h2 Наукометрические показатели 
+
+h3
+  |Число публикаций: 
+  =@profile.publications.count
+
+h3 Общее количество публикаций в изданиях, индексируемых в базах:
+.form-inline.form-group
+  p
+    |Ринц: 
+    =@profile.amount_publications('rinc')
+  p
+    |Scopus: 
+    =@profile.amount_publications('scopus')
+  p
+    |WOS: 
+    =@profile.amount_publications('wos')
+
+h3 Общее количество цитирований в изданиях, индексируемых/входящих в перечень:
+.form-inline.form-group
+  p
+    |Ринц: 
+    =@profile.citations('rinc')
+  p
+    |Scopus: 
+    =@profile.citations('scopus')
+  p
+    |WOS: 
+    =@profile.citations('wos')
+  p
+    |SCOPUS/WOS(без дублирования): 
+    =@profile.citations('scopus/wos')
+
+h3 Время пребывания в ДВФУ
+=render 'shared/profile_stays', prof: @profile

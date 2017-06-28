@@ -1,0 +1,67 @@
+= simple_form_for @profile, :html=> {class: 'profile-form'} do |f|
+  = f.error_notification
+  .form-inputs
+    h2 Общие сведения
+    .form-inline.form-group
+      =f.input :last_name, required: true
+      =f.input :first_name, required: true
+      =f.input :middle_name
+    =f.input :latin_name
+    =f.input :birthday, as: :date, :start_year => 1910, :end_year => 2016
+    .form-inline.form-group
+      =f.association :nationalities, input_html: {multiple: false}
+      =f.input :place_of_work
+      =f.input :working_postition
+    h3 Образование:
+    .form-inline.form-group
+      =f.input :education_university
+      =f.input :education_graduation, input_html: {min: 1910}
+      =f.input :academic_degree
+
+    h2 Контактная информация
+    =f.input :phone, as: :tel
+    =f.input :email_contact, as: :email, input_html: {value: @profile.email_contact || current_user.email}
+
+    h2 Научная деятельность
+    .form-inline.form-group
+      =f.input :science_degree
+      =f.input :science_degree_year, input_html: {min: 1910}
+      =f.input :academic_title
+    =f.input :academic_awards
+    =f.input :academic_membership, as: :text
+    =f.input :labour_market, as: :radio_buttons, label: 'Привлечен с _____ рынка труда', wrapper: :vertical_radio_and_checkboxes
+    .well международный &mdash; иностранные граждане или российские граждане-обладатели степени PhD зарубежного университета
+
+    / =f.collection_radio_buttons :labour_market, Profile.labour_markets, :first, :first
+
+    h2 Наукометрические показатели 
+      
+    =f.input :monograph_amount
+    h3 Индекc Хирша:
+    .form-inline.form-group
+      =f.input :index_hirsch_rinc, label: 'РИНЦ', input_html: {min: 0}
+      =f.input :index_hirsch_scopus, label: 'Scopus', input_html: {min: 0}
+      =f.input :index_hirsch_wos, label: 'Web of Science', input_html: {min: 0}
+    =f.input :wos_researcher_id
+    .well
+      |Можно получить, зарегистрировавшись по адресу 
+      a href='www.ResearcherID.com' www.ResearcherID.com
+    =f.input :scopus_author_id
+    .well
+      |Scopus AuthorID формируется в базе данных Scopus автоматически при появлении у автора хотя бы одной статьи в данной базе. AuthorID указан в авторском профиле, который становится доступен, если при поиске автора в базе данных Scopus (Author Search) в результатах поиска нажать на фамилию автора.
+
+    / h3 Общее количество публикаций в изданиях, индексируемых в базах:
+    / .form-inline.form-group
+    /   =f.input :publications_rinc, label: 'РИНЦ', input_html: {min: 0}
+    /   =f.input :publications_scopus, label: 'Scopus', input_html: {min: 0}
+    /   =f.input :publications_wos, label: 'Web of Science', input_html: {min: 0}
+
+    / h3 Общее количество цитирований в изданиях, индексируемых/входящих в перечень:
+    / .form-inline.form-group
+    /   =f.input :citations_rinc, label: 'РИНЦ', input_html: {min: 0}
+    /   =f.input :citations_scopus, label: 'Scopus', input_html: {min: 0}
+    /   =f.input :citations_wos, label: 'Web of Science', input_html: {min: 0}
+
+  .form-actions
+    = f.button :submit, 'Сохранить'
+    = link_to "Отмена", root_path, class: 'btn'

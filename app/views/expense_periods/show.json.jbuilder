@@ -1,0 +1,1 @@
+json.partial! "expense_periods/expense_period", expense_period: @expense_period

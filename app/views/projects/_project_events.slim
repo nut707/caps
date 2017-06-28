@@ -1,0 +1,40 @@
+div style='margin: 10px 0;'
+  =link_to 'Добавить мероприятия',new_project_event_path(@project), class: 'btn btn-default'
+  -unless @project.events.present?
+    p.text-center style='margin:40px' Нет мероприятий
+  -else
+    table.table.table-striped
+      thead
+        th Название
+        th Дата начала работ
+        th Дата окончания работ
+        th Ответственный
+        th Статус
+        th Отчет о выполнении
+        th Дата отчета
+        -if can? :edit, @project.events.first
+          th Управление
+      tbody
+        -@events.each do |event|
+          tr class='event-#{event.id} '
+            td =event.title
+            td =Russian::strftime(event.start_date,('%d %B %Y'))
+            td =Russian::strftime(event.end_date,('%d %B %Y'))
+            td 
+              =link_to event.participant.profile.fio, profile_path(event.participant.profile) if event.participant.present?
+            td =event.status_i18n
+            td.report
+              -unless event.report.present? 
+                =simple_form_for [@project.becomes(Project), event], url: add_report_project_event_path(@project, event), method: :patch, remote: true do |f|
+                  =f.input :report, label: false
+                  =f.submit 'Сохранить', class: 'btn btn-default'
+              -else
+                =event.report
+            td.report-date 
+              =Russian::strftime(event.report_date,('%d %B %Y')) if event.report_date.present?
+            -if can? :edit, event
+              td
+                =link_to edit_project_event_path(@project, event) do 
+                  =fa_icon 'pencil'
+                =link_to project_event_path(@project, event), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+                  =fa_icon 'trash'

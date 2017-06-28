@@ -1,0 +1,8 @@
+-for attribute in @edu_program.attributes.keys-['id','project_id','created_at','updated_at']
+  -if @edu_program.attributes[attribute].present?
+    h4
+      = EduProgram.human_attribute_name(attribute)+':'
+    p = @edu_program.attributes[attribute].to_s
+
+h4 Курсы:
+=render 'edu_programs/edu_program_courses', edu_program: @edu_program

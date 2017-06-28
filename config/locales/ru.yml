@@ -1,0 +1,304 @@
+ru:
+  date:
+    formats:
+      default: "%d %B %Y"
+  time:
+    formats:
+      default: "%H:%M %d %B %Y"
+  login: 'Единая учетная запись ДВФУ.</br>Если вы не являетесь сотрудником ДВФУ, используйте e-mail'
+  boolean:
+    "yes": "Да"
+    "no": "Нет"
+    "nil": "н/д"
+  activerecord:
+    models:
+      project: 'Проект'
+      complex_project: 'Комплексный проект'
+      research_project: 'Исследовательский проект'
+      edu_project: 'Образовательный проект'
+      role: 'Роль'
+      participant: "Участник"
+      publication: 'Публикация'
+      science_branch: 'Научная отрасль'
+      activity_direction: 'Направление деятельности'
+      language: 'Язык'
+      expense_item: Статья расхода
+      expense_period: Период расхода
+      planned_expense: Планируемый расход
+    attributes:
+      user:
+        username: 'Имя пользователя'
+        login: 'Единая учетная запись ДВФУ. Если вы не являетесь сотрудником ДВФУ, используйте e-mail'
+      profile:
+        participant:
+          participants: 'участиники'
+        publication:
+          publications: 'публикации'
+        nationalities: Гражданство
+        last_name: 'Фамилия'
+        first_name: 'Имя'
+        middle_name: 'Отчество'
+        latin_name: 'Фамилия и имя латиницей'
+        birthday: 'Дата рождения'
+        place_of_work: 'Текущее место работы'
+        working_postition: 'Должность'
+        education_university: 'Наименование вуза'
+        education_graduation: 'Год выпуска'
+        academic_degree: 'Академическая степень'
+
+        science_degree: 'Ученая степень'
+        science_degree_year: 'Год получения ученой степени'
+        academic_title: 'Ученое звание'
+        academic_awards: 'Научные достижения'
+        academic_membership: 'Членство в различных российских и зарубежных научных организациях'
+        labour_market: 'Рынок труда'
+
+        monograph_amount: 'Количество монографий за последние 5 лет'
+        index_hirsch_rinc: 'Индекс Хирша согласно б/д РИНЦ'
+        index_hirsch_scopus: 'Индекс Хирша согласно б/д Scopus'
+        index_hirsch_wos: 'Индекс Хирша согласно б/д Web of Science'
+        wos_researcher_id: 'WoS ResearcherID'
+        scopus_author_id: 'Scopus AuthorID'
+
+        phone: 'Контактный телефон'
+        email_contact: 'Контактный e-mail'
+      publication:
+        title: 'Название публикации'
+        year: 'Год издания' 
+        url: 'Адрес публикации в интернете'
+        title_izdanie: 'Название издания'
+        url_izdanie: 'Адрес издания в интернете'
+        affiliated_fefu: Аффилирован с ДВФУ
+        issn: 'ISSN' 
+        isbn: 'ISBN'
+        indexed_rinc: 'Индексируется в РИНЦ'
+        indexed_scopus: 'Индексируется в Scopus'
+        indexed_wos: 'Индексируется в Web of Science'
+        citations_rinc: 'количество цитирований в РИНЦ'
+        citations_scopus: 'количество цитирований в Scopus'
+        citations_wos: 'количество цитирований в Web of Science' 
+        citations_scopus_wos: 'количество цитирований в Scopus/Web of Science (без дублирований)'
+        quartile_scopus: 'квартиль журнала SCOPUS'
+        quartile_wos: 'квартиль журнала WOS'
+      external_author:
+        last_name: 'Фамилия'
+        first_name: 'Имя'
+        middle_name: 'Отчество'
+      project:
+        title: 'Наименование проекта'
+        type: 'Тип проекта'
+        status: 'Статус проекта'
+        science_branches: Научная(ые) отрасль(и)
+        activity_directions: Направления исследований и образовательных программ 
+        objective: 'Цель проекта'
+        description: 'Описание проекта'
+        results: 'Результаты проекта'
+        attracting_additional_funding: 'Привлечение дополнительного финансирования'
+        experience: Опыт ключевых членов коллектива по реализации схожих проектов
+        resources: Имеющиеся научные заделы, имеющиеся материально-технические и информационные ресурсы
+        from: Год начала
+        to: Год окончания
+      participant:
+        role: 'Роль в коллективе'
+        status: 'Статус в коллективе'
+      event:
+        title: "Название мероприятия"
+        description: 'Описание'
+        start_date: 'Дата начала работ'
+        end_date: 'Дата окончания работ'
+        participant: 'Ответственный'
+        report: 'Отчет о выполнении'
+        report_date: 'Дата отчета'
+      science_branch:
+        name: 'Наименование отрасли'
+      activity_direction:
+        name: 'Наименование направления'
+      rate:
+        name: 'Наименование показателя'
+        desc: 'Описание показателя'
+        exp_val_1y: 1 год (план)
+        exp_val_2y: 2 год (план)
+        exp_val_3y: 3 год (план)
+      other_event:
+        name: 'Название вида работы/мероприятия'
+        price: Стоимость (тыс.руб.)
+        expected_result_for_project: Ожидаемый результат для реализации предлагаемого проекта 
+        expected_result_for_caps: Ожидаемый результат для реализации проекта консорциума САЕ ЦАТИ в целом 
+        desc: Описание планируемого мероприятия
+        target_audience: Описание целевой аудитории
+        desc_of_zadel: Описание существующего задела, связь с научным исследованием
+        promotion_plan: План продвижения
+        comparison_with_analogues: Сравнение с аналогами
+      course:
+        title: Название образовательного курса
+        lvl: Уровень программы
+        languages: 'Языки'
+        profile_podgotovki: Профиль (профили) подготовки
+        duration: Продолжительность, час.
+        desc: Описание курса
+      research:
+        theme: Тема научного исследования
+        science_branches: Научная(ые) отрасль(и)
+        activity_directions: Направления исследований и образовательных программ 
+        key_words: Ключевые слова
+        statement_of_research_problem: Постановка исследовательской проблемы
+        aims_and_objectives: Цели и задачи исследования
+        desc_research: Описание предлагаемого научного исследования
+        desc_methods: Описание научных подходов и методов, используемых для решения поставленных задач
+        expected_results: Ожидаемые результаты научного исследования
+      edu_program:
+        name: Название образовательной программы
+        type_pr: Тип образовательной программы
+        forma: Форма обучения
+        profile_podgotovki: Профиль подготовки
+        languages: Язык(и) преподавания
+        second_diplom_univer: Название университета-партнера (при наличии)       
+        initial_edu_lvl: Начальный уровень образования поступающих
+        other_requirements: Иные входные требования
+        price: Стоимость обучения по программе (тыс.руб.)
+        duration: Продолжительность обучения (мес.)
+        degree: Получаемая степень
+        date_start_enrolment: Дата начала набора на программу
+        date_start_education: Дата начала обучения
+        code: Код специальности, направления подготовки
+        desc: Описание образовательной программы
+        desc_audience: Описание целевой аудитории
+        online_courses: Онлайн курсы
+      stay:
+        from: с
+        to: по
+      student:
+        fio: ФИО
+        edu_program: Образовательная программа
+        edu_year: Год обучения (на текущий момент)
+        birthday_year: Год рождения
+        nationality: Гражданство
+        ege_mark: Суммарные баллы ЕГЭ
+        forma: Основа обучения
+      teacher:
+        fio: ФИО
+        course: Курс
+        birthday_year: Год рождения
+        nationality: Гражданство
+        nationality_id: Гражданство
+      expense_item:
+        code: Код
+        name: Название
+      expense_period:
+        name: Название
+        start: Начало
+        finish: Конец
+      planned_expense:
+        value: Сумма
+        expense_period: Период расхода
+        expense_item: Статья расхода
+        expense_period_id: Период расхода
+        expense_item_id: Статья расхода
+      expense_doc:
+        planned_expense_id: Плановый расход
+        planned_expense: Плановый расход
+        reserve_doc_id: Резервный документ
+        reserve_doc: Резервный документ
+        date: Дата
+        number: Номер
+        cfo: ЦФО
+        contragent: Контрагент
+        payment_purpose: Назначение платежа
+        sum: Сумма
+        responsible: Ответственный
+        comment: Комментарий
+      reserve_doc:
+        planned_expense_id: Плановые расходы
+        planned_expense: Плановые расходы
+        date: Дата
+        number: Номер
+        cfo: ЦФО
+        contragent: Контрагент
+        payment_purpose: Назначение платежа
+        sum: Сумма
+        responsible: Ответственный
+        comment: Комментарий
+        from: с
+        to: по
+
+        
+    errors:
+      models:
+        profile:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                many: "Есть связанная запись #{record}"
+        planned_expense:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                many: "Не может быть удален. Есть связанные записи"
+        expense_period:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                many: "Не может быть удален. Есть связанные записи"
+  enums:
+    user:
+      role:
+        user: 'пользователь'
+        admin: 'администратор ЦАТИ'
+        superadmin: 'супер-администратор'
+    profile:
+      science_degree:
+        dr: 'доктор наук'
+        phd: 'PhD'
+        candidate: 'кандидат наук'
+      labour_market: 
+        ru: 'российский'
+        int: 'международный'
+        # <abbr title="иностранные граждане или российские граждане-обладатели степени PhD зарубежного университета">*</abbr>
+    publication:
+        quartile_scopus:
+          Q1_sc: 'Q1'
+          Q2_sc: 'Q2'
+          Q3_sc: 'Q3'
+          Q4_sc: 'Q4'
+        quartile_wos:
+          Q1_wos: 'Q1'
+          Q2_wos: 'Q2'
+          Q3_wos: 'Q3'
+          Q4_wos: 'Q4'
+    project:
+      status:
+        draft: 'черновик'
+        confirming: 'на согласовании'
+        confirmed: 'согласован'
+        archived: 'архив'
+    participant:
+      status:
+        npr: 'НПР'
+        aup: 'АУП'
+        uvp: 'УВП'
+    event:
+      status:
+        not_done: 'не выполнено'
+        done: 'выполнено'
+    course:
+      lvl:
+        bacalavr: бакалавриат
+        magistr: магистратура
+        phd: PhD
+        aspirant: аспирантура
+    edu_program:
+      type_pr:
+        mag: магистратура 
+        asp: аспирантура
+        phd: PhD
+        bac: бакалавриат
+      forma:
+        och: очная
+        zaoch: заочная
+      initial_edu_lvl:
+        bacalavr: законченное высшее образование (бакалавриат)
+        magistr: законченное высшее образование (магистратура)
+    student:
+      forma:
+        dogovor: договор
+        budget: бюджет

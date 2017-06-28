@@ -1,0 +1,2 @@
+class ComplexProject < Project
+end

@@ -1,0 +1,34 @@
+.simple_form{
+  label{
+    margin: 0 5px !important;
+  }
+  h2{
+    border-bottom: 1px solid $brand-primary;
+    padding-bottom: 10px;
+    color: $brand-primary;
+  }
+  h3{
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+  }
+  .collapse-control{
+    font-size: 30px;
+    display: block;
+    border-bottom: 1px solid;
+    text-decoration: none;
+    padding: 5px 15px;
+    margin-bottom: 15px;
+  }
+  .form-inline .form-inline{
+    display: inline-block;
+  }
+}
+.form-actions{
+  margin-top: 10px;
+}
+
+#filterrific-no-ajax-auto-submit{
+  label{
+    margin-right: 20px;
+  }
+}

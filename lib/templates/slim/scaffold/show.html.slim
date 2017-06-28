@@ -1,0 +1,19 @@
+h2 
+  =<%= singular_table_name.camelize %>.model_name.human
+  .pull-right
+    =link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) do
+      =fa_icon 'pencil'
+
+-for attribute in @<%= singular_table_name %>.attributes.keys-['id', 'created_at','updated_at']
+  -if @<%= singular_table_name %>.attributes[attribute].present?
+    -enums = @<%= singular_table_name %>.defined_enums.keys
+    p
+      strong
+        = <%= singular_table_name.camelize %>.human_attribute_name(attribute)+': '
+      -if enums.include? attribute
+        =@<%= singular_table_name %>.send attribute+'_i18n'
+      -else
+       = @<%= singular_table_name %>.attributes[attribute].to_s
+
+.btn-group
+  = link_to 'Назад', <%= index_helper %>_path, class: 'btn btn-default'

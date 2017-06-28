@@ -1,0 +1,22 @@
+h2 
+  |Расходный документ
+  .pull-right
+    =link_to edit_project_expense_doc_path(@project, @expense_doc) do
+      =fa_icon 'pencil'
+
+-for attribute in @expense_doc.attributes.keys-['id', 'created_at','updated_at']
+  -if @expense_doc.attributes[attribute].present?
+    -enums = @expense_doc.defined_enums.keys
+    p
+      strong
+        = ExpenseDoc.human_attribute_name(attribute)+': '
+      -if enums.include? attribute
+        =@expense_doc.send attribute+'_i18n'
+      -elsif attribute == 'planned_expense_id'
+        -pl = PlannedExpense.find(@expense_doc.attributes[attribute])
+        =link_to pl.name, [@project.becomes(Project), pl]
+      -else
+       = @expense_doc.attributes[attribute].to_s
+
+.btn-group
+  = link_to 'Назад', :back, class: 'btn btn-default'

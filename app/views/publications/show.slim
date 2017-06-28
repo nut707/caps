@@ -1,0 +1,12 @@
+-for attribute in @publication.attributes.keys-['id','author_id','created_at','updated_at']
+  -enums = @publication.defined_enums.keys
+  -if @publication.attributes[attribute].present?
+    h4
+      = Publication.human_attribute_name(attribute)+':'
+    p 
+    -if @publication.attributes[attribute].class == TrueClass 
+      =@publication.attributes[attribute].humanize
+    -elsif enums.include? attribute
+      =@publication.send attribute+'_i18n'
+    -else
+      =@publication.attributes[attribute].to_s

@@ -1,0 +1,7 @@
+-console
+=simple_form_for @role do |f|
+  - @role.role_fields.each do |rf|
+    =rf.name
+    =simple_fields_for :role_fields_value do |rfv|
+      =rfv.input :value
+  =f.submit 'Сохранить'

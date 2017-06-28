@@ -1,0 +1,9 @@
+= simple_form_for @language do |f|
+  =f.error_notification
+  .form-inputs
+    h3 Язык
+    .form-group
+      =f.input :name
+    .form-actions
+      = f.button :submit, 'Сохранить'
+      = link_to "Отмена", my_publications_path, class: 'btn'

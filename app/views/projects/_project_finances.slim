@@ -1,0 +1,24 @@
+div
+  ul.nav.nav-pills.nav-justified style='margin-bottom:10px;'
+    li.active 
+      a data-toggle="pill" href="#total" Итого
+    li
+      a data-toggle="pill" href="#periods" Периоды
+    li
+      a data-toggle="pill" href="#planned" Плановые расходы
+    li
+      a data-toggle="pill" href="#reserves" Резервы
+    li
+      a data-toggle="pill" href="#expences" Расходы
+
+  .tab-content
+    #total.tab-pane.fade.in.active
+      ==render partial: 'finances_total'
+    #periods.tab-pane.fade.in
+      == render partial: 'project_expense_periods', locals: {expense_periods: @project.expense_periods}
+    #planned.tab-pane.fade.in
+      == render partial: 'project_planned_expenses', locals: {planned_expenses: @project.planned_expenses.includes(:expense_period, :expense_item)}
+    #reserves.tab-pane.fade.in
+      == render partial: 'project_reserve_docs', locals: {reserve_docs: @project.reserve_docs.includes(:planned_expense)}
+    #expences.tab-pane.fade.in
+      == render partial: 'project_expense_docs', locals: {expense_docs: @project.expense_docs.includes(:planned_expense , :reserve_doc)}

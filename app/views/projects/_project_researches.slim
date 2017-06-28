@@ -1,0 +1,28 @@
+div style='margin: 10px 0'
+  =link_to 'Добавить исследование', new_project_research_path(@project), class: 'btn btn-default'
+-unless @researches.present?
+  p.text-center style='margin:40px' Нет исследований
+-else
+  table.table.table-striped
+    thead
+      th Тема
+      th Научная(ые) отрасль(и)
+      th Направления исследований и образовательных программ 
+      -if can? :edit, @researches.new
+        th Управление
+    tbody
+      -@researches.each do |res|
+        tr 
+          td = link_to res.theme, project_research_path(@project, res)
+          td 
+            -res.science_branches.each do |i|
+              p =i.name
+          td 
+            -res.activity_directions.each do |i|
+              p =i.name
+          -if can? :edit, res
+            td
+              =link_to edit_project_research_path(@project, res) do 
+                =fa_icon 'pencil'
+              =link_to project_research_path(@project, res), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+                =fa_icon 'trash'

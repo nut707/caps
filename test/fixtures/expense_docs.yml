@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  planned_expense_id: 
+  reserve_doc_id: 
+  date: 2017-03-10
+  number: MyString
+  cfo: MyString
+  contragent: MyString
+  payment_purpose: MyString
+  sum: 9.99
+  responsible: MyString
+  comment: MyText
+
+two:
+  planned_expense_id: 
+  reserve_doc_id: 
+  date: 2017-03-10
+  number: MyString
+  cfo: MyString
+  contragent: MyString
+  payment_purpose: MyString
+  sum: 9.99
+  responsible: MyString
+  comment: MyText

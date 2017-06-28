@@ -1,0 +1,30 @@
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th
+      -@project.expense_periods.each do |period|
+        th colspan=4 =period.period
+    tr
+      th
+      -@project.expense_periods.each do |period|
+        th План
+        th Резерв
+        th Остаток фактический
+        th Остаток с учетом резерва
+  tbody
+    -@project.expense_items.distinct.each do |item|
+      tr
+        td =item.human_name
+        -@project.expense_periods.each do |period|
+          /надо нормально переписать
+          -planned_sum = item.planned_expenses.where(expense_period_id: period.id).pluck(:value).sum
+          -res_docs = ReserveDoc.joins(:planned_expense).where('planned_expenses.expense_item_id = ? and planned_expenses.expense_period_id = ?', item.id, period.id)
+          -exp_docs = ExpenseDoc.joins(:planned_expense).where('planned_expenses.expense_item_id = ? and planned_expenses.expense_period_id = ?', item.id, period.id)
+          -exp_docs_not_reserved = ExpenseDoc.joins(:planned_expense).where('planned_expenses.expense_item_id = ? and planned_expenses.expense_period_id = ? and reserve_doc_id is ?', item.id, period.id, nil)
+          td = planned_sum
+          td = res_docs.pluck(:sum).sum
+
+          td = planned_sum-exp_docs.pluck(:sum).sum
+          td = planned_sum-res_docs.pluck(:sum).sum-exp_docs_not_reserved.pluck(:sum).sum
+
+    

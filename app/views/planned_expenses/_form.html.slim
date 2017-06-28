@@ -1,0 +1,11 @@
+= simple_form_for [@project.becomes(Project),@planned_expense] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :expense_period, collection: @project.expense_periods.map {|e| [ e.period+' '+e.name.capitalize, e.id ] }
+    = f.association :expense_item, collection: ExpenseItem.all.map {|ei| [ ei.human_name, ei.id ] }
+    = f.input :value
+
+  .form-actions.btn-group
+    = f.button :submit, 'Сохранить'
+    = link_to 'Назад', project_path(@project, anchor: 'finances'), class: 'btn btn-default'

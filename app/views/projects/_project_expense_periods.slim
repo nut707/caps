@@ -1,0 +1,30 @@
+=link_to 'Добавить период расхода', new_project_expense_period_path(@project), class: 'btn btn-default'
+
+table.table.table-striped
+  thead
+    tr
+      th = ExpensePeriod.human_attribute_name('start')
+      th = ExpensePeriod.human_attribute_name('finish')
+      th = ExpensePeriod.human_attribute_name('name')
+      th Управление
+
+  tbody
+    - expense_periods.each do |expense_period|
+      tr
+        td = expense_period.start
+        td = expense_period.finish
+        td = expense_period.name
+        td
+          ul.list
+            li
+              = link_to expense_period do
+                =fa_icon 'eye'
+                |Просмотр
+            li
+              = link_to edit_expense_period_path(expense_period) do
+                =fa_icon 'pencil'
+                |Редактировать
+            li
+              = link_to  expense_period, data: { confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?" }, method: :delete do
+                =fa_icon 'trash'
+                |Удалить

@@ -1,0 +1,15 @@
+=simple_form_for [project.becomes(Project), other_event] do |f|
+  =f.error_notification
+  .form-inputs
+    =f.input :name
+    =f.input :price
+    =f.input :expected_result_for_project
+    =f.input :expected_result_for_caps
+    =f.input :desc
+    =f.input :target_audience
+    =f.input :desc_of_zadel
+    =f.input :promotion_plan
+    =f.input :comparison_with_analogues
+  .form-actions
+    = f.button :submit, 'Сохранить'
+    = link_to "Отмена", project_path(@project, anchor: 'other_events'), class: 'btn'

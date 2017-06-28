@@ -1,0 +1,36 @@
+div style='margin: 10px 0;'
+  =link_to 'Добавить образовательную программу', new_project_edu_program_path(@project), class: 'btn btn-default'
+  -unless @project.edu_programs.present?
+    p.text-center style='margin:40px' Нет образовательных программ
+  -else
+    table.table.table-striped
+      thead
+        th Название
+        th Курсы
+        th Студенты
+        / -if can? :edit, @project.edu_programs.first
+        th Управление
+      tbody
+        -@edu_programs.each do |edu_program|
+          tr
+            td =link_to edu_program.name, project_edu_program_path(@project, edu_program)
+            td =render 'edu_programs/edu_program_courses', edu_program: edu_program
+            td =render 'edu_programs/edu_program_students', edu_program: edu_program
+            / -if can? :edit, edu_program
+            td
+              p 
+                =link_to new_project_course_path(@project, edu_program_id: edu_program.id) do
+                  =fa_icon 'plus-circle'
+                  | Добавить курс
+              p 
+                =link_to new_project_edu_program_student_path(@project, edu_program) do
+                  =fa_icon 'user-plus'
+                  | Добавить студента
+              p 
+                =link_to edit_project_edu_program_path(@project, edu_program) do 
+                  =fa_icon 'pencil'
+                  | Редактировать
+                p 
+                =link_to project_edu_program_path(@project, edu_program), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+                  =fa_icon 'trash'
+                  | Удалить

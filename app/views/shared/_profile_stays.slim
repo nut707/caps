@@ -1,0 +1,10 @@
+= link_to 'Добавить', new_profile_stay_path(prof) if can? :new, prof.stays
+-if prof.stays.present?
+  -prof.stays.each do |s|
+    p 
+      = Russian::strftime(s.from,('%d %B %Y'))+' - '+ Russian::strftime(s.to,('%d %B %Y'))+' '
+      -if can? :destroy, s
+        = link_to profile_stay_path(prof, s), method: :delete, data: {confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?"} do
+          = fa_icon 'times'
+-else
+  p н/д

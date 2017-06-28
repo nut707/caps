@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  period_expense_id: 
+  expense_item_id: 
+  value: 9.99
+
+two:
+  period_expense_id: 
+  expense_item_id: 
+  value: 9.99

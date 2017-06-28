@@ -1,0 +1,14 @@
+h1 Создать период расхода
+
+= simple_form_for [@project.becomes(Project), @expense_period] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :start
+    = f.input :finish
+    = f.input :name
+
+  .form-actions.btn-group
+    = f.button :submit, 'Сохранить'
+    = link_to 'Назад', project_path(@project, anchor: 'finances'), class: 'btn btn-default'
+

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fio: MyString
+  belongs_to: 
+  birthday_year: 1
+  belongs_to: 
+
+two:
+  fio: MyString
+  belongs_to: 
+  birthday_year: 1
+  belongs_to: 

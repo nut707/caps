@@ -1,0 +1,18 @@
+= simple_form_for [@project.becomes(Project),@expense_doc] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :planned_expense, collection: planned_expense_collection_for_select
+    = f.association :reserve_doc, disabled: true, prompt: 'Выберите плановоый расход', include_blank: ''
+    = f.input :date
+    = f.input :number
+    = f.input :cfo
+    = f.input :contragent
+    = f.input :payment_purpose
+    = f.input :sum
+    = f.input :responsible
+    = f.input :comment
+
+  .form-actions.btn-group
+    = f.button :submit, 'Сохранить'
+    = link_to 'Назад', project_path(@project, anchor: 'finances'), class: 'btn btn-default'

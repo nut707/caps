@@ -1,0 +1,19 @@
+= simple_form_for [@project.becomes(Project),@reserve_doc] do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :planned_expense, collection: planned_expense_collection_for_select
+    = f.input :date
+    = f.input :number
+    = f.input :cfo
+    = f.input :contragent
+    = f.input :payment_purpose
+    = f.input :sum
+    = f.input :from
+    = f.input :to
+    = f.input :responsible
+    = f.input :comment
+
+  .form-actions.btn-group
+    = f.button :submit, 'Сохранить'
+    = link_to 'Назад', project_path(@project, anchor: 'finances'), class: 'btn btn-default'

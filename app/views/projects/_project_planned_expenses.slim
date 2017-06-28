@@ -1,0 +1,30 @@
+=link_to 'Добавить плановый расход', new_project_planned_expense_path(@project), class: 'btn btn-default'
+
+table.table.table-striped
+  thead
+    tr
+      th = PlannedExpense.human_attribute_name('expense_period')
+      th = PlannedExpense.human_attribute_name('expense_item')
+      th = PlannedExpense.human_attribute_name('value')
+      th Управление
+
+  tbody
+    - planned_expenses.each do |planned_expense|
+      tr
+        td = link_to planned_expense.expense_period.period, expense_period_path(planned_expense.expense_period)        
+        td = link_to planned_expense.expense_item.code+' - '+planned_expense.expense_item.name, expense_item_path(planned_expense.expense_item)
+        td = planned_expense.value
+        td
+          ul.list
+            li
+              = link_to project_planned_expense_path(@project, planned_expense) do
+                =fa_icon 'eye'
+                |Просмотр
+            li
+              = link_to edit_project_planned_expense_path(@project, planned_expense) do
+                =fa_icon 'pencil'
+                |Редактировать
+            li
+              = link_to  project_planned_expense_path(@project, planned_expense), data: { confirm: "Это действие необратимо! Вы уверены, что хотите продолжить?" }, method: :delete do
+                =fa_icon 'trash'
+                |Удалить

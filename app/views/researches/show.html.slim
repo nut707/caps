@@ -1,0 +1,5 @@
+-for attribute in @research.attributes.keys-['id','project_id','created_at','updated_at']
+  -if @research.attributes[attribute].present?
+    h4
+      = Research.human_attribute_name(attribute)+':'
+    p = @research.attributes[attribute].to_s

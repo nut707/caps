@@ -1,0 +1,5 @@
+=link_to 'Добавить публикацию', new_publication_path, class: 'btn btn-default'
+-if @publications.present?
+  =render partial: 'publication_table', locals: {publications: @publications}
+-else
+  .text-center У вас пока нет публикаций

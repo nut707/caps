@@ -1,0 +1,9 @@
+=simple_form_for [@profile, @stay] do |f|
+  = f.error_notification
+  .form-inputs
+    .form-inline.form-group
+      =f.input :from
+      =f.input :to
+
+  .form-actions
+    = f.button :submit, "Сохранить"

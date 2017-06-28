@@ -1,0 +1,2 @@
+module ActivityDirectionsHelper
+end
